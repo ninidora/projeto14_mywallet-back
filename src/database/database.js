@@ -6,7 +6,7 @@ const connection = new Pool({
     host: 'localhost',
     port: 5432,
     user: 'postgres',
-    password: 'senhapsql',    
+    password: '123456',    
     database: 'database_mywallet',
   });
 

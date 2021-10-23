@@ -1,0 +1,19 @@
+CREATE TABLE users (id SERIAL,
+	name TEXT NOT NULL,
+	cpf TEXT NOT NULL UNIQUE,
+	"birthDate" DATE NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	password TEXT NOT NULL);
+	
+CREATE TABLE "userActivity" ("activityID" SERIAL,
+	"userID" INT NOT NULL,
+	amount MONEY NOT NULL,
+	description TEXT NOT NULL,
+	date DATE NOT NULL);
+		
+CREATE TABLE sessions (id SERIAL,
+	uuid UUID NOT NULL,
+	token TEXT NOT NULL UNIQUE,
+	"lastPing" TIME NOT NULL,
+	"userID" INT NOT NULL);
+
