@@ -13,7 +13,6 @@ CREATE TABLE "userActivity" ("activityID" SERIAL,
 		
 CREATE TABLE sessions (id SERIAL,
 	uuid UUID NOT NULL,
-	token TEXT NOT NULL UNIQUE,
-	"lastPing" TIME NOT NULL,
-	"userID" INT NOT NULL);
+	"userID" int NOT NULL,
+	"lastPing" TIME NOT NULL);
 

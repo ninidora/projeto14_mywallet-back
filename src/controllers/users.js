@@ -1,5 +1,8 @@
 import connection from "../database/database.js";
 import bcrypt from "bcrypt";
+import { v4 as uuid } from "uuid";
+import { query } from "express";
+import dayjs from "dayjs";
 
 async function listUsers (req, res) {
     try {
@@ -23,7 +26,7 @@ async function createUser (req, res) {
         const result = await connection.query(`
         INSERT INTO users (name, cpf, "birthDate", email, password) VALUES ($1, $2, $3, $4, $5);
         `, [name, cpf, birthDate, email, encripted]);
-        
+    
         return res.status(200).send("novo usuario cadastrado com sucesso");
     }
     catch (error) {
@@ -31,6 +34,7 @@ async function createUser (req, res) {
         return res.status(409).send(error.code + ": " + error.detail);
     }
 }
+
 
 async function userLogIn (req, res) {
     const {email, password} = req.body;
@@ -48,15 +52,32 @@ async function userLogIn (req, res) {
             return res.status(401).send("email e/ou senha incorretos");
         }
 
-        return res.status(200).send(`usuário logado: ${user.name} ${user.email}`);        
+        const newToken = uuid;
+        console.log(newToken);
+        const now = dayjs();
+        console.log(now);
+        console.log
+        /*
+        try {
+            const loggedUser = await connection.query(`
+                INSERT INTO sessions (uuid, "userID", lastping) VALUES ($1, $2, $3);
+            `, [newToken, user.id, ]);
+            
+        } catch (error) {
+            console.log(error);
+            return res.sendStatus(500);
+            
+        }
+        */
+              
+       
+        return res.status(200).send(user);        
     }
     catch (error) {
         console.log(error);
-        return res.sendStatus(501);
+        return res.sendStatus(500);
     }
 }
-
-
 
 
 export { listUsers, createUser, userLogIn };
