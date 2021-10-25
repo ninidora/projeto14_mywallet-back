@@ -72,6 +72,10 @@ async function userLogIn (req, res) {
         //console.log(now);
         
         try {
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            await connection.query(`
+                DELETE FROM sessions WHERE "userID"=4;`);
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             const loggedUser = await connection.query(`
                 INSERT INTO sessions (uuid, "userID", lastping) VALUES (gen_random_uuid(), $1, current_timestamp(0));
             `, [user.id]);
@@ -83,7 +87,7 @@ async function userLogIn (req, res) {
             `, [user.id]);
             
 
-            return res.status(200).send("usuario logado com sucesso - " + user.email +" "+ newToken.rows[0].uuid);
+            return res.status(200).send(newToken.rows[0].uuid);
             
         } catch (error) {
             console.log(error.code + ": " + error.detail);

@@ -1,10 +1,14 @@
-import { testSum } from "../src/server.js";
+//import { function } from "../src/server.js";
 
-describe("testing simple sum", () => {
+/*
+describe("test condition description", () => {
 
-    it("returns 3 for params (2,1) ", () => {
-      const result = testSum(2, 1);
+    it("outputs expected when inputs are ...", () => {
+      const result = function(params);
       expect(result).toEqual(3);
     });
      
   });
+  */
+
+  // !!erro ao separar app.listen em outro arquivo server.js p testar app.functions !!
