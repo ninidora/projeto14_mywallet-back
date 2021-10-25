@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { listUsers, listSessions, createUser, userLogIn } from './controllers/users.js';
-import { newActivity } from './controllers/transactions.js';
+import { newEntry, userEntries } from './controllers/transactions.js';
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,8 @@ app.post('/users', createUser);
 app.post('/sign-in', userLogIn);
 app.get('/sessions', listSessions);
 
-app.post('/transactions', newActivity);
+app.get('/transactions', userEntries);
+app.post('/transactions', newEntry);
 
 
 

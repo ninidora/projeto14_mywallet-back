@@ -68,8 +68,8 @@ async function userLogIn (req, res) {
 
         //const newToken = uuid();
         //console.log(newToken);
-        const now = dayjs().format();
-        console.log(now);
+        //const now = dayjs().format();
+        //console.log(now);
         
         try {
             const loggedUser = await connection.query(`
